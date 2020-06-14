@@ -8,26 +8,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ZipExtractCommand extends ZipCommand {
-
-
     @Override
     public void execute() throws Exception {
-
         try {
-            ConsoleHelper.writeMessage("распаковка архива.");
+            ConsoleHelper.writeMessage("Распаковка архива.");
 
             ZipFileManager zipFileManager = getZipFileManager();
 
-            ConsoleHelper.writeMessage("введите директорию куда будем распаковывать:");
-            Path outputPath = Paths.get(ConsoleHelper.readString());
+            ConsoleHelper.writeMessage("Введите путь для распаковки:");
+            Path destinationPath = Paths.get(ConsoleHelper.readString());
+            zipFileManager.extractAll(destinationPath);
 
-            zipFileManager.extractAll(outputPath);
-
-            ConsoleHelper.writeMessage("Архив распакован.");
+            ConsoleHelper.writeMessage("Архив был распакован.");
 
         } catch (PathIsNotFoundException e) {
-            ConsoleHelper.writeMessage("Вы неверно указали имя файла или директории.");
+            ConsoleHelper.writeMessage("Неверный путь для распаковки.");
         }
-
     }
 }
