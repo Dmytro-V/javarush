@@ -1,6 +1,5 @@
 package com.javarush.task.task20.task2025;
 
-import javafx.collections.transformation.SortedList;
 
 import java.util.*;
 
@@ -101,7 +100,7 @@ public class Solution {
     public static void main(String[] args) {
         Date dateBegin = new Date();
 
-        long[] result = getNumbers(-3L);
+        long[] result = getNumbers(3L);
         for (int i = 0; i < result.length; i++) {
             System.out.print(result[i] + " ");
         }
