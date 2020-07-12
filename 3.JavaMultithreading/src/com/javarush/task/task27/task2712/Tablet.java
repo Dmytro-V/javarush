@@ -21,7 +21,9 @@ public class Tablet extends Observable {
     public Order createOrder() {
         try {
             Order order = new Order(this);
-            ConsoleHelper.writeMessage(order.toString());
+            if (order.isEmpty()) {
+                return null;
+            }
             setChanged();
             notifyObservers(order);
             return order;
