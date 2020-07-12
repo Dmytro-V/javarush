@@ -1,6 +1,7 @@
 package com.javarush.task.task27.task2712.kitchen;
 
 import com.javarush.task.task27.task2712.ConsoleHelper;
+import com.javarush.task.task27.task2712.ad.AdvertisementManager;
 
 import java.util.Observable;
 import java.util.Observer;
