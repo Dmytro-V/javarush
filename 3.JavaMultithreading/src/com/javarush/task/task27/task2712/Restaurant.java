@@ -12,12 +12,10 @@ public class Restaurant {
         tablet1.addObserver(cook);
         cook.addObserver(waiter);
 
-
         tablet1.createOrder();
         tablet1.createOrder();
         tablet1.createOrder();
         tablet1.createOrder();
-
 
     }
 }

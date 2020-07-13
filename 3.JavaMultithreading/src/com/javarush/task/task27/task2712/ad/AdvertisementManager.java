@@ -1,6 +1,8 @@
 package com.javarush.task.task27.task2712.ad;
 
-import com.javarush.task.task27.task2712.ConsoleHelper;
+
+import java.util.ArrayList;
+
 
 public class AdvertisementManager {
     
@@ -13,7 +15,12 @@ public class AdvertisementManager {
     }
 
     public void processVideos() {
-        ConsoleHelper.writeMessage("calling processVideos method");
+        ArrayList<Object> advertisements = new ArrayList<>(storage.list());
+        if (advertisements.isEmpty()) {
+            throw new NoVideoAvailableException();
+        }
+
+
     }
 
 }
