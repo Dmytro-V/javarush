@@ -4,8 +4,8 @@ public class Advertisement {
     private Object content;
     private String name;
     private long initialAmount;
-    private int hits;
-    private int duration;
+    private int hits;       //count of play
+    private int duration;  //seconds
 
     private long amountPerOneDisplaying;
 
@@ -15,8 +15,11 @@ public class Advertisement {
         this.initialAmount = initialAmount;
         this.hits = hits;
         this.duration = duration;
+        this.amountPerOneDisplaying = hits > 0 ? initialAmount / hits : 0;
+    }
 
-        this.amountPerOneDisplaying = initialAmount / hits;
+    public int getHits() {
+        return hits;
     }
 
     public String getName() {
@@ -31,10 +34,21 @@ public class Advertisement {
         return amountPerOneDisplaying;
     }
 
+    public int getAmountPerMSecond() {
+        int amountPerSecond = (int)(1000 * getAmountPerOneDisplaying() / getDuration());
+        return amountPerSecond;
+
+    }
+
     public void revalidate() {
         if (hits <= 0) {
             throw new UnsupportedOperationException();
         }
         hits--;
+    }
+
+    @Override
+    public String toString() {
+        return name + " is displaying... " + getAmountPerOneDisplaying() + ", " + getAmountPerMSecond();
     }
 }

@@ -15,7 +15,7 @@ public class Order {
         dishes = ConsoleHelper.getAllDishesForOrder();
     }
 
-    public int getTotalCookingTime() {
+    public int getTotalCookingTime() {    //minutes
         int durationOrder = 0;
         for (Dish dish : dishes) {
             durationOrder += dish.getDuration();

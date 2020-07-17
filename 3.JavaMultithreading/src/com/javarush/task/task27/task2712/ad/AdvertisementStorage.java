@@ -7,7 +7,7 @@ public class AdvertisementStorage {
 
     private static final AdvertisementStorage advertisementStorage = new AdvertisementStorage();
 
-    private final List<Object> videos = new ArrayList<>();
+    private final List<Advertisement> videos = new ArrayList<>();
 
     private AdvertisementStorage() {
         Object someContent = new Object();
@@ -22,13 +22,15 @@ public class AdvertisementStorage {
     }
 
 
-    public List<Object> list() {
+    public List<Advertisement> list() {
         return videos;
     }
 
     public void add(Advertisement advertisement) {
         videos.add(advertisement);
     }
+
+
 }
 
 
