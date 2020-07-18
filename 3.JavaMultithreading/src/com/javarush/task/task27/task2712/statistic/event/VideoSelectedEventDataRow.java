@@ -13,16 +13,22 @@ public class VideoSelectedEventDataRow implements EventDataRow {
     totalDuration - общая продолжительность показа отобранных рекламных роликов
 */
 
-
     private List<Advertisement> optimalVideoSet;
     private long amount;
     private int totalDuration;
     private Date currentDate;
+    private final EventType TYPE = EventType.SELECTED_VIDEOS;
+
 
     public VideoSelectedEventDataRow(List<Advertisement> optimalVideoSet, long amount, int totalDuration) {
         this.optimalVideoSet = optimalVideoSet;
         this.amount = amount;
         this.totalDuration = totalDuration;
         this.currentDate = new Date();
+    }
+
+    @Override
+    public EventType getType() {
+        return TYPE;
     }
 }

@@ -1,6 +1,10 @@
 package com.javarush.task.task27.task2712.ad;
 
 
+import com.javarush.task.task27.task2712.statistic.StatisticManager;
+import com.javarush.task.task27.task2712.statistic.event.EventDataRow;
+import com.javarush.task.task27.task2712.statistic.event.VideoSelectedEventDataRow;
+
 import java.util.*;
 
 
@@ -63,6 +67,9 @@ public class AdvertisementManager {
                 return comparator2;
             }
         });
+
+        EventDataRow event = new VideoSelectedEventDataRow(listForPlaying, getTotalAmount(listForPlaying), getDurationList(listForPlaying));
+        StatisticManager.getInstance().register(event);
 
         for (Advertisement advertisement : listForPlaying) {
             System.out.println(advertisement);

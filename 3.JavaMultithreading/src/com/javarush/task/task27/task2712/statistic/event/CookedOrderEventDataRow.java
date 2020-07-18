@@ -20,6 +20,7 @@ public class CookedOrderEventDataRow implements EventDataRow {
     private int cookingTimeSeconds;
     private List<Dish> cookingDishs;
     private Date currentDate;
+    private final EventType TYPE = EventType.COOKED_ORDER;
 
 
     public CookedOrderEventDataRow(String tabletName, String cookName, int cookingTimeSeconds, List<Dish> cookingDishs) {
@@ -29,5 +30,10 @@ public class CookedOrderEventDataRow implements EventDataRow {
         this.cookingDishs = cookingDishs;
         this.currentDate = new Date();
 
+    }
+
+    @Override
+    public EventType getType() {
+        return TYPE;
     }
 }
