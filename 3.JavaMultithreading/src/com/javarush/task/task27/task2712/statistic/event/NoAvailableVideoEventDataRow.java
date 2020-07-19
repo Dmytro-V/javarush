@@ -21,4 +21,14 @@ public class NoAvailableVideoEventDataRow implements EventDataRow {
     public EventType getType() {
         return TYPE;
     }
+
+    @Override
+    public Date getDate() {
+        return currentDate;
+    }
+
+    @Override
+    public int getTime() {
+        return totalDuration;
+    }
 }
