@@ -30,7 +30,7 @@ public class Cook extends Observable implements Observer {
 
         EventDataRow event = new CookedOrderEventDataRow(tablet.toString(),
                 this.toString(),
-                ((Order) order).getTotalCookingTime(),
+                ((Order) order).getTotalCookingTime() * 60,
                 ((Order) order).getDishes());
         StatisticManager.getInstance().register(event);
     }

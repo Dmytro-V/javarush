@@ -27,6 +27,10 @@ public class VideoSelectedEventDataRow implements EventDataRow {
         this.currentDate = new Date();
     }
 
+    public long getAmount() {
+        return amount;
+    }
+
     @Override
     public EventType getType() {
         return TYPE;

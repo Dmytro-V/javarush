@@ -32,6 +32,10 @@ public class CookedOrderEventDataRow implements EventDataRow {
 
     }
 
+    public String getCookName() {
+        return cookName;
+    }
+
     @Override
     public EventType getType() {
         return TYPE;
@@ -46,4 +50,8 @@ public class CookedOrderEventDataRow implements EventDataRow {
     public int getTime() {
         return cookingTimeSeconds;
     }
+
+/*    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }*/
 }
