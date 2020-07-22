@@ -1,5 +1,7 @@
 package com.javarush.task.task27.task2712.ad;
 
+import java.util.Objects;
+
 public class Advertisement {
     private Object content;
     private String name;
@@ -50,5 +52,18 @@ public class Advertisement {
     @Override
     public String toString() {
         return name + " is displaying... " + getAmountPerOneDisplaying() + ", " + getAmountPerMSecond();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Advertisement that = (Advertisement) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
