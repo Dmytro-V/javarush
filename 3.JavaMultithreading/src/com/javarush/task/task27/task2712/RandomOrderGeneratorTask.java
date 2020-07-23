@@ -5,11 +5,11 @@ import java.util.List;
 public class RandomOrderGeneratorTask implements Runnable {
 
     private List<Tablet> tablets;
-    private final int ORDER_CREATING_INTERVAL;
+    private final int interval; //milliseconds
 
-    public RandomOrderGeneratorTask(List<Tablet> tablets, int orderCreatingInterval) {
+    public RandomOrderGeneratorTask(List<Tablet> tablets, int interval) {
         this.tablets = tablets;
-        ORDER_CREATING_INTERVAL = orderCreatingInterval;
+        this.interval = interval;
     }
 
     @Override
@@ -17,12 +17,12 @@ public class RandomOrderGeneratorTask implements Runnable {
 
         while (true) {
             int size = tablets.size();
-            int random = (int) (Math.random() * 100) / size;
+            int random = (int) (Math.random() * 100) % size;
             Tablet tablet = tablets.get(random);
 
-            tablet.createOrder();
+            tablet.createTestOrder();
             try {
-                Thread.sleep(ORDER_CREATING_INTERVAL);
+                Thread.sleep(interval);
             } catch (InterruptedException e) {
                 return;
             }
