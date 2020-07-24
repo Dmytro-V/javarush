@@ -16,16 +16,17 @@ public class Restaurant {
 
 
         List<Tablet> tablets = new ArrayList<>();
+        OrderManager orderManager = new OrderManager();
 
 
         Cook cook1 = new Cook("Ivanov");
         Cook cook2 = new Cook("Petrov");
 
+
         for (int i = 0; i < 5; i++) {
             Tablet tablet = new Tablet(i);
             tablets.add(tablet);
-            tablet.addObserver(cook1);
-            tablet.addObserver(cook2);
+            tablet.addObserver(orderManager);
         }
 
         StatisticManager statisticManager = StatisticManager.getInstance();
