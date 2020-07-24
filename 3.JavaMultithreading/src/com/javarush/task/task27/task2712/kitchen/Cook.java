@@ -8,10 +8,11 @@ import com.javarush.task.task27.task2712.statistic.event.EventDataRow;
 import java.util.Observable;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class Cook extends Observable implements Runnable {
+public class Cook implements Runnable {
     private String name;
     private boolean busy;
     private LinkedBlockingQueue<Order> queue;
+    private LinkedBlockingQueue<Order> queueCookedOrder;
 
 
     public boolean isBusy() {
@@ -20,6 +21,10 @@ public class Cook extends Observable implements Runnable {
 
     public void setQueue(LinkedBlockingQueue<Order> queue) {
         this.queue = queue;
+    }
+
+    public void setQueueCookedOrder(LinkedBlockingQueue<Order> queueCookedOrder) {
+        this.queueCookedOrder = queueCookedOrder;
     }
 
     public Cook(String name) {
@@ -35,15 +40,14 @@ public class Cook extends Observable implements Runnable {
 
         this.busy = true;
 
-        ConsoleHelper.writeMessage( "Start cooking - " + order +
+        ConsoleHelper.writeMessage( "Start cooking - " + order + " by " + this.name +
                         ", cooking time " + ((Order)order).getTotalCookingTime() +
                         "min");
 
         int timeCooking = order.getTotalCookingTime() * 10; // min * 10
         Thread.sleep(timeCooking);
 
-        setChanged();
-        notifyObservers(order);
+        queueCookedOrder.add(order);
 
         EventDataRow event = new CookedOrderEventDataRow(order.getTablet().toString(),
                 this.toString(),
