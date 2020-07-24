@@ -13,8 +13,6 @@ public class StatisticManager {
 
     private final static StatisticManager statisticManager = new StatisticManager();
     private StatisticStorage statisticStorage = new StatisticStorage();
-    private Set<Cook> cooks = new HashSet<>();
-
 
     private StatisticManager() {
 
@@ -28,9 +26,6 @@ public class StatisticManager {
         statisticStorage.put(data);
     }
 
-    public void register(Cook cook) {
-        cooks.add(cook);
-    }
 
     public Map<LocalDate, Long> getAdvertisementProfitPerDays() {
         Map<LocalDate, Long> profitPerDays = new TreeMap<>(Comparator.reverseOrder());
@@ -129,7 +124,4 @@ public class StatisticManager {
         }
     }
 
-    public Set<Cook> getCooks() {
-        return cooks;
-    }
 }
