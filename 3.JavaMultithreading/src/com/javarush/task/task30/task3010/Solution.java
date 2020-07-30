@@ -9,9 +9,10 @@ import java.math.BigInteger;
 public class Solution {
     public static void main(String[] args) {
         //напишите тут ваш код
-            String text = args[0];
+        try {
+            String text = args[0].toUpperCase();
 
-            for (int i = 2; i <= 36 ; i++) {
+            for (int i = 2; i <= 36; i++) {
 
                 try {
                     BigInteger result = new BigInteger(text, i);
@@ -21,9 +22,9 @@ public class Solution {
                 } catch (Exception e) {
                 }
             }
+        } catch (Exception e) {
+
+        }
         System.out.println("incorrect");
-
-
-
     }
 }
