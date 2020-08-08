@@ -48,23 +48,28 @@ public class Model {
         return emptyTiles;
     }
 
-    private void compressTiles(Tile[] tiles) {
-
+    private boolean compressTiles(Tile[] tiles) {
+        boolean change = false;
         for (int j = 0; j < tiles.length - 1; j++) {
             for (int i = 0; i < tiles.length - 1; i++) {
                 if (tiles[i].isEmpty() && !tiles[i + 1].isEmpty()) {
                     tiles[i].value = tiles[i + 1].value;
                     tiles[i + 1].value = 0;
+                    change = true;
                 }
             }
         }
+        return change;
     }
 
-    private void mergeTiles(Tile[] tiles) {
+    private boolean mergeTiles(Tile[] tiles) {
+        boolean change = false;
         for (int i = 0; i < tiles.length - 1; i++) {
-            if (tiles[i].value == tiles[i + 1].value) {
+            if (tiles[i].value != 0
+                && tiles[i].value == tiles[i + 1].value) {
                 tiles[i].value +=  tiles[i + 1].value;
                 tiles[i + 1].value = 0;
+                change = true;
 
                 this.score += tiles[i].value;
                 if (tiles[i].value > this.maxTile) {
@@ -73,5 +78,17 @@ public class Model {
             }
         }
         compressTiles(tiles);
+        return change;
+    }
+
+    public void left() {
+        boolean change = false;
+        for (int i = 0; i < gameTiles.length; i++) {
+            change = compressTiles(gameTiles[i]) || change;
+            change = mergeTiles(gameTiles[i]) || change;
+        }
+        if (change) {
+            addTile();
+        }
     }
 }
