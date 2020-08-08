@@ -91,4 +91,48 @@ public class Model {
             addTile();
         }
     }
+
+    public void right() {
+        rotateGameTiles();
+        rotateGameTiles();
+        left();
+        rotateGameTiles();
+        rotateGameTiles();
+
+    }
+
+    public void up() {
+        rotateGameTiles();
+        rotateGameTiles();
+        rotateGameTiles();
+        left();
+        rotateGameTiles();
+    }
+
+    public void down() {
+        rotateGameTiles();
+        left();
+        rotateGameTiles();
+        rotateGameTiles();
+        rotateGameTiles();
+    }
+
+    private void rotateGameTiles() {
+        int[][] rotatedGameTiles = new int[FIELD_WIDTH][FIELD_WIDTH];
+
+        // поворот матрицы на 90 гр по часовой стрелке
+        for (int i = 0; i < FIELD_WIDTH; i++) {
+            for (int j = 0; j < FIELD_WIDTH; j++) {
+                rotatedGameTiles[j][FIELD_WIDTH - 1 - i] = gameTiles[i][j].value;
+            }
+        }
+
+        //копирование матрицы
+        for (int i = 0; i < FIELD_WIDTH; i++) {
+            for (int j = 0; j < FIELD_WIDTH; j++) {
+                gameTiles[i][j].value = rotatedGameTiles[i][j];
+            }
+        }
+
+    }
 }
