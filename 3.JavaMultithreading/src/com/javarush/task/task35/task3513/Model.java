@@ -135,4 +135,25 @@ public class Model {
         }
 
     }
+
+    public boolean canMove() {
+
+        if (!getEmptyTiles().isEmpty()) {
+            return true;
+        }
+        for (int i = 0; i < FIELD_WIDTH - 1; i++) {
+            for (int j = 0; j < FIELD_WIDTH - 1; j++) {
+                if (gameTiles[i][j].value == gameTiles[i + 1][j].value
+                        || gameTiles[i][j].value == gameTiles[i][j + 1].value) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Tile[][] getGameTiles() {
+        return gameTiles;
+    }
+
 }
