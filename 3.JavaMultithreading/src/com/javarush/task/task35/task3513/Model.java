@@ -84,6 +84,9 @@ public class Model {
     }
 
     public void left() {
+        if (isSaveNeeded) {
+            saveState(gameTiles);
+        }
         boolean change = false;
         for (int i = 0; i < gameTiles.length; i++) {
             change = compressTiles(gameTiles[i]) || change;
@@ -92,9 +95,11 @@ public class Model {
         if (change) {
             addTile();
         }
+        isSaveNeeded = true;
     }
 
     public void right() {
+        saveState(gameTiles);
         rotateGameTiles();
         rotateGameTiles();
         left();
@@ -104,6 +109,7 @@ public class Model {
     }
 
     public void up() {
+        saveState(gameTiles);
         rotateGameTiles();
         rotateGameTiles();
         rotateGameTiles();
@@ -112,6 +118,7 @@ public class Model {
     }
 
     public void down() {
+        saveState(gameTiles);
         rotateGameTiles();
         left();
         rotateGameTiles();
