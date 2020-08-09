@@ -1,6 +1,7 @@
 package com.javarush.task.task35.task3513;
 
 import javax.lang.model.util.ElementScanner6;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -35,7 +36,6 @@ public class Controller extends KeyAdapter {
 
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             resetGame();
-            return;
         }
 
         if (!model.canMove()) {
@@ -64,5 +64,9 @@ public class Controller extends KeyAdapter {
             view.isGameWon = true;
         }
         view.repaint();
+    }
+
+    public View getView() {
+        return view;
     }
 }

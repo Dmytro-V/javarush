@@ -66,4 +66,6 @@ public class View extends JPanel {
     private static int offsetCoors(int arg) {
         return arg * (TILE_MARGIN + TILE_SIZE) + TILE_MARGIN;
     }
+
+
 }
