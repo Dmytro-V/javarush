@@ -20,8 +20,6 @@ public class Model {
                 gameTiles[i][j] = new Tile();
             }
         }
-        this.score = 0;
-        this.maxTile = 0;
         addTile();
         addTile();
     }
