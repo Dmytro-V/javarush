@@ -36,6 +36,37 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
     }
 
 
+    public String getParent(String s) {
+        List<Entry<String>> tree = getLeaves();
+        for (Entry<String> leaf : tree) {
+            if (leaf.elementName.equals(s)) {
+                return leaf.parent.elementName;
+            }
+        }
+        return null;
+    }
+
+    private List<Entry<String>> getLeaves() {
+        ArrayList<Entry<String>> leaves = new ArrayList<>();
+        leaves.add(root);
+
+        int i = 0;
+        Entry<String> leaf;
+        do {
+            leaf = leaves.get(i);
+            if (leaf.leftChild != null) {
+                leaves.add(leaf.leftChild);
+            }
+            if (leaf.rightChild != null) {
+                leaves.add(leaf.rightChild);
+            }
+            i++;
+
+        } while (i < leaves.size());
+
+        return leaves;
+    }
+
     @Override
     public boolean add(String s) {
         List<Entry<String>> tree = getLeaves();
@@ -59,41 +90,45 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
         return false;
     }
 
-    public String getParent(String s) {
+    @Override
+    public boolean remove(Object o) {
+        if (!(o instanceof String)) {
+            throw new UnsupportedOperationException();
+        }
+        String leafForRemove = (String)o;
         List<Entry<String>> tree = getLeaves();
         for (Entry<String> leaf : tree) {
-            if (leaf.elementName.equals(s)) {
-                return leaf.parent.elementName;
+            if (leaf.elementName.equals(leafForRemove)) {
+                if (leaf == leaf.parent.leftChild) {
+                    leaf.parent.leftChild = null;
+                } else if (leaf == leaf.parent.rightChild) {
+                    leaf.parent.rightChild = null;
+                }
             }
         }
-        return null;
+
+        tree = getLeaves();
+
+        if (!tree.stream()
+                .anyMatch(leaf -> leaf.isAvailableToAddChildren())){
+
+            for (Entry<String> leaf : tree) {
+                if (leaf.leftChild == null) {
+                    leaf.availableToAddLeftChildren = true;
+                }
+                if (leaf.rightChild == null) {
+                    leaf.availableToAddRightChildren = true;
+                }
+            }
+        }
+
+        return true;
     }
 
     @Override
     public int size() {
         List<Entry<String>> tree = getLeaves();
         return tree.size() - 1;
-    }
-
-    private List<Entry<String>> getLeaves() {
-        ArrayList<Entry<String>> leaves = new ArrayList<>();
-        leaves.add(root);
-
-        int i = 0;
-        Entry<String> leaf;
-            do {
-                leaf = leaves.get(i);
-                if (leaf.leftChild != null) {
-                    leaves.add(leaf.leftChild);
-                }
-                if (leaf.rightChild != null) {
-                    leaves.add(leaf.rightChild);
-                }
-                i++;
-
-            } while (i < leaves.size());
-
-        return leaves;
     }
 
 
